@@ -6,3 +6,5 @@ nome = st.text_input("Digite o nome do cliente:")
 endereco = st.text_input("Digite o endereço:")
 dt_nasc = st.date_input("Escolha a data de nascimento:")
 tipo_cliente = st.selectbox("Selecione o tipo de cliente:", ["Pessoa Física", "Pessoa Jurídica"])
+
+
