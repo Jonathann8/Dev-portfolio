@@ -11,6 +11,6 @@ tipo_cliente = st.selectbox("Selecione o tipo de cliente:", ["Pessoa Física", "
 cadastrar = st.button("Cadastrar Cliente")
 
 if cadastrar:
-    with open("clientes.csv", "a") as arquivo:
+    with open("clientes.csv", "a", encoding="utf8") as arquivo:
         arquivo.write(f"{nome},{endereco},{dt_nasc},{tipo_cliente}\n")
         st.success("Cliente cadastrado com sucesso!")
