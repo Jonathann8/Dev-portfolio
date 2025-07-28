@@ -6,7 +6,9 @@ nome = st.text_input("Digite o nome do cliente:")
 endereco = st.text_input("Digite o endereço:")
 dt_nasc = st.date_input("Escolha a data de nascimento:")
 tipo_cliente = st.selectbox("Selecione o tipo de cliente:", ["Pessoa Física", "Pessoa Jurídica"])
-
+Telefone = st.text_input("Digite o telefone do cliente:")
+email = st.text_input("Digite o e-mail do cliente:")
+CPF_CNPJ = st.text_input("Digite o CPF ou CNPJ do cliente:")
 
 cadastrar = st.button("Cadastrar Cliente")
 
