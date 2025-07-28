@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import datetime
 
 st.title("Sistema de Cadastro")
@@ -23,3 +24,27 @@ if cadastrar:
     with open("clientes.csv", "a", encoding="utf8") as arquivo:
         arquivo.write(f"{nome},{endereco},{dt_nasc},{tipo_cliente},{Telefone},{email},{CPF_CNPJ},{Observações}\n")
     st.success("Cliente cadastrado com sucesso!")
+
+def limpar_arquivo_csv(caminho_arquivo):
+    try:
+        with open(caminho_arquivo, "r", encoding="utf8", errors="ignore") as f:
+            linhas = f.readlines()
+        linhas_validas = [linha for linha in linhas if linha.count(",") == 7]
+        with open(caminho_arquivo, "w", encoding="utf8") as f:
+            f.writelines(linhas_validas)
+    except FileNotFoundError:
+        pass  # Se o arquivo não existir, não faz nada
+
+if st.button("Visualizar Clientes Cadastrados"):
+    limpar_arquivo_csv("clientes.csv")
+    try:
+        df = pd.read_csv(
+            "clientes.csv",
+            header=None,
+            encoding="utf-8",
+            encoding_errors="ignore",
+            names=["Nome", "Endereço", "Data Nasc.", "Tipo", "Telefone", "Email", "CPF/CNPJ", "Observações"]
+        )
+        st.dataframe(df)
+    except FileNotFoundError:
+        st.warning("Nenhum cliente cadastrado ainda.")
